@@ -1,3 +1,278 @@
-@media (max-width: 414px) {
-    
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+body {
+    background: #008230;
+    font-family: 'Roboto', sans-serif
+}
+
+.permission-denied {
+    width: 80vh;
+    min-width: 640px;
+}
+
+.permission-denied img {
+    height: 20rem;
+    width: auto;
+    object-fit: cover;
+    margin: 5rem 1vw;
+}
+
+.permission-denied h2 {
+    height: 10vh;
+    text-align: center;
+    font-size: 2.4rem;
+    margin: 1vh 1vw;
+}
+
+.vcenter {
+    margin-top: calc((20vh) / 2);
+}
+
+.card {
+    width: 480px;
+    height: 80vh;
+    max-height: 640px;
+    border: none;
+    border-radius: 15px;
+    bottom: 0px;
+}
+
+.adiv {
+    background: #242424;
+    border-radius: 15px 15px 0 0;
+    font-size: 12px;
+    height: 45px;
+}
+
+.entryInput {
+    height: calc(80vh - 45px);
+    background: #242424;
+    border-top: 2.5px solid #008230;
+
+    border-radius: 0 0 15px 15px;
+}
+
+.entryInput img {
+    height: auto;
+    width: 50%;
+    margin: 0.85rem 25%;
+    object-fit: cover;
+}
+
+.entryInput h3 {
+    height: auto;
+    margin: 0.25rem 10%;
+    color: white;
+    text-align: center;
+}
+
+.entryInput form input {
+    font-size: 2.1rem;
+    width: 80%;
+    margin: 0.75rem 10%;
+    padding: 5px 15px;
+    border: 1px solid #008230;
+    border-radius: 5px;
+    background: #212121;
+    color: #008230;
+}
+
+.entryInput form h4 {
+    font-size: 0.8rem;
+    width: 80%;
+    margin: 0.75rem 10%;
+    padding: 5px 15px;
+    color: #b42309;
+}
+
+.entryInput form input:hover {
+    background: #363636;
+
+    transition: 400ms;
+}
+
+.scroller {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    height: calc(75vh - 125px);
+
+    overflow: scroll;
+}
+
+.chat {
+    border: none;
+    background: #00823015;
+    font-size: 12px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.others {
+    display: block;
+}
+
+.bg-white {
+    border: 1px solid #E7E7E9;
+    font-size: 12px;
+    border-radius: 20px;
+    width: calc(100% - 5px);
+}
+
+.myvideo img {
+    border-radius: 20px;
+}
+
+.dot {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 6px;
+    border: 1px solid #F0F0F0;
+    font-size: 16px
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    font-size: 16px;
+    color: #C4C4C4;
+}
+
+.chatInput {
+    position: absolute;
+    bottom: 0px;
+    height: 75px;
+    width: 100%;
+}
+
+.chatInput textarea {
+    height: 100%;
+}
+
+@media screen and (min-height: 661px) {
+    .vcenter {
+        margin-top: calc((100vh - 640px) / 2);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0px;
+    }
+
+    .vcenter {
+        margin-top: 0px;
+        height: 100vh;
+    }
+
+    .card {
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        border-radius: 0px;
+    }
+
+    .adiv {
+        background: #242424;
+        border-radius: 0;
+        font-size: 12px;
+        height: 45px;
+    }
+
+    .entryInput {
+        border-radius: 0;
+    }
+
+    .entryInput form input {
+        width: 90%;
+        margin: 0.75rem 5%;
+        padding: 5px 15px;
+    }
+}
+
+/* CSS Animation */
+
+/* .fade-out {
+    animation: fadeOut ease 2s;
+    -webkit-animation: fadeOut ease 2s;
+    -moz-animation: fadeOut ease 2s;
+    -o-animation: fadeOut ease 2s;
+    -ms-animation: fadeOut ease 2s;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@-moz-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@-o-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@-ms-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+} */
+
+
+.hidden {
+    display: none;
+}
+
+.fade-in {
+    display: block;
+
+    transition: 800ms;
+}
+
+.fade-out {
+    opacity: 0.0;
+    visibility: hidden;
+
+    transition: opacity 800ms, visibility 800ms linear;
 }
