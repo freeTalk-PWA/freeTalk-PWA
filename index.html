@@ -228,6 +228,10 @@
 
     document.getElementById("msg").value = '';
 
+    if (msg == '') {
+      return;
+    }
+
     msgSend = httpPost('https://' + sessionStorage.getItem('Subdomain') + '.ngrok.io/send', { "clientKey": sessionStorage.getItem('clientKey'), "msgContent": msg });
 
     if (msgSend.R == 1) {
