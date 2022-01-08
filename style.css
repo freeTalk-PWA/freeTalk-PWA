@@ -1,0 +1,30 @@
+#loader {
+    position: relative;
+    top: calc(50vh - 60px);
+    left: calc(50vw - 60px);
+    border: 15px solid #242424;
+    border-top: 15px solid #008230F9;
+    border-right: 15px solid #008230D9;
+    border-bottom: 15px solid #008230B9;
+    border-left: 15px solid #00823099;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 4.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#entryForm {
+    position: relative;
+    background-color: white;
+    height: calc(100vh - 48px);
+}
+

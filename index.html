@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>freeTalk.PS</title>
-
-    <link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon">
-    <link rel="manifest" crossorigin="use-credentials" href="/manifest.json">
-</head>
-<body>
-    
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js');
-        }
-    </script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>freeTalk.PS</title>
+        <link rel="shortcut icon" href="./icons/favicon.ico" type="image/x-icon">
+        <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <link rel="stylesheet" href="./dist/output.css">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body id="body">
+        <div id="loader"></div>
+        <div id="entryForm" class="w-24 min-w-full m-16 p-24 rounded-sm" style="display: none;">
+            
+        </div>
+        <script>
+            window.onload = function() {
+                document.getElementById("body").style.backgroundColor = "#008230";
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("entryForm").style.display = "block";
+            };
+            
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("/sw.js");
+            }
+        </script>
+    </body>
 </html>
