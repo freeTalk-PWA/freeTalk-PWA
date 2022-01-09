@@ -4,27 +4,144 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>freeTalk.PS</title>
+        <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="./icons/freeTalk.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="./icons/freeTalk.png">
+        <link rel="apple-touch-icon" sizes="167x167" href="./icons/freeTalk.png">
         <link rel="shortcut icon" href="./icons/favicon.ico" type="image/x-icon">
         <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-        <link rel="stylesheet" href="./dist/output.css">
         <link rel="stylesheet" href="./style.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                        freeGreen: '#008230',
+                        freeGreenLight: '#008230D9',
+                        }
+                    }
+                }
+            }
+        </script>
     </head>
     <body id="body">
         <div id="loader"></div>
-        <div id="entryForm" class="w-24 min-w-full m-16 p-24 rounded-sm" style="display: none;">
-            
+        <div id="PCBrowser" style="display: none;">
+            <div class="bg-white p-8 rounded-lg w-[300px] h-[300px]">
+                <div class="">
+                    <p class="mt-0 text-center text-xs text-gray-400 font-light leading-4">
+                        This link can only be accessed using a mobile device to scan the QR code:
+                    </p>
+                    <img id="QR.PCBrowser" class="mx-auto m-4 w-auto" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
+                </div>
+            </div>
+        </div>
+        <div id="entryForm" class="p-8" style="display: none;">
+            <div>
+                <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
+                <h2 class="mt-6 text-center text-1xl font-medium text-gray-900">
+                    Enter your access credentials
+                </h2>
+            </div>
+            <form class="bg-transparent mt-8 space-y-6" action="#" method="POST">
+                <input type="hidden" name="remember" value="True">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="email-address" class="sr-only">Nickname</label>
+                        <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Email address">
+                    </div>
+                    <div>
+                        <label for="password" class="sr-only">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Password">
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-freeGreen focus:ring-freeGreenLight border-gray-300 rounded">
+                        <label for="remember_me" class="ml-2 block text-sm text-freeGreen">
+                            Keep me connected
+                        </label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-freeGreen hover:text-freeGreenLight">
+                            Request Access Credentials
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-freeGreen hover:bg-freeGreenLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-freeGreenLight">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <!-- Heroicon name: solid/lock-closed -->
+                            <svg class="h-5 w-5 text-white group-hover:text-lightgray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="True">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        Request Entry
+                    </button>
+                </div>
+            </form>
+            <div>
+                <p class="mt-4 text-center text-1xl text-lg text-gray-400 font-light">
+                    Channel's QR CODE:
+                </p>
+                <img id="QR.entryForm" class="mx-auto m-4 w-auto" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
+            </div>
+        </div>
+        <div id="snackbar" class="text-left text-white rounded-lg p-8 z-1 fixed bottom-15">
+            <a onclick="hide()" class="absolute top-[5px] right-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" fill="whitesmoke" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+            </a>
+
+            Reminder: Using this progressive web app after adding it to home screen will ensure a much smoother user experience.
         </div>
         <script>
             window.onload = function() {
-                document.getElementById("body").style.backgroundColor = "#008230";
-                document.getElementById("loader").style.display = "none";
-                document.getElementById("entryForm").style.display = "block";
+                document.getElementById('body').style.backgroundColor = '#008230';
+                document.getElementById('loader').style.display = 'none';
             };
             
-            if ("serviceWorker" in navigator) {
-                navigator.serviceWorker.register("/sw.js");
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js');
             }
+
+            // Checking if this is running on a PC
+
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                document.getElementById('entryForm').style.display = 'block';
+                document.getElementById('QR.entryForm').src += window.location.href;
+            } else {
+                document.getElementById('PCBrowser').style.display = 'block';
+                document.getElementById('QR.PCBrowser').src += window.location.href;
+            }
+
+            // Checking if this is running on iOS
+
+            const isIos = () => {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                return /ip(hone|od)/.test(userAgent);
+            }
+
+            // Checking if this is running in standalone mode
+
+            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+            if (isIos() && !isInStandaloneMode()) {
+                setTimeout(function(){document.getElementById('snackbar').classList.add('show');}, 500);
+                // setTimeout(function(){document.getElementById('snackbar').classList.remove('show');}, 3500);
+            }
+
+            function hide() {
+                setTimeout(function(){document.getElementById('snackbar').classList.remove('show');}, 50);
+                // setTimeout(function(){document.getElementById('snackbar').classList.add('hide');}, 50);
+            }
+
+            // Checking if this is running on Android
+
         </script>
+        <!-- <script src="view.control.js"></script> -->
     </body>
 </html>

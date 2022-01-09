@@ -16,15 +16,65 @@
 @keyframes spin {
     0% {
         transform: rotate(0deg);
-    }
+     }
     100% {
         transform: rotate(360deg);
-    }
+     }
+}
+
+#PCBrowser {
+    position: relative;
+    top: calc(50vh - 150px);
+    left: calc(50vw - 150px);
 }
 
 #entryForm {
     position: relative;
     background-color: white;
-    height: calc(100vh - 48px);
+    height: calc(100vh);
 }
 
+#snackbar {
+    position: fixed;
+    bottom: 15px;
+    left: calc(15px);
+    visibility: hidden;
+    width: calc(100vw - 30px);
+    background-color: #242424D9;
+    color: whitesmoke;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    z-index: 1;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s;
+    animation: fadein 0.5s;
+}
+
+#snackbar.hide {
+    visibility: hide;
+    -webkit-animation: fadeout 0.5s 2.5s;
+    animation: fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from { bottom: 0; opacity: 0; }
+    to { bottom: 15px; opacity: 1; }
+}
+
+@keyframes fadein {
+    from { bottom: 0; opacity: 0; }
+    to { bottom: 15px; opacity: 1; }
+}
+
+/* @-webkit-keyframes fadeout {
+    from { bottom: 15px; opacity: 1; }
+    to { bottom: 0; opacity: 0; }
+}
+
+@keyframes fadeout {
+    from { bottom: 15px; opacity: 1; }
+    to { bottom: 0; opacity: 0; }
+} */
