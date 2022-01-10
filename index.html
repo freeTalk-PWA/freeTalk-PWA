@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
         <title>freeTalk.PS</title>
         <link rel="apple-touch-icon" href="touch-icon-iphone.png">
         <link rel="apple-touch-icon" sizes="152x152" href="./icons/freeTalk.png">
@@ -49,12 +49,12 @@
                 <input type="hidden" name="remember" value="True">
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
-                        <label for="email-address" class="sr-only">Nickname</label>
-                        <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Email address">
+                        <label for="channel-name" class="sr-only">Channel Name</label>
+                        <input id="channel-name" name="channel" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Channel Name">
                     </div>
                     <div>
-                        <label for="password" class="sr-only">Password</label>
-                        <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Password">
+                        <label for="nickname" class="sr-only">Nickname</label>
+                        <input id="nickname" name="nickname" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Nickname">
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
@@ -66,25 +66,25 @@
                     </div>
                     <div class="text-sm">
                         <a href="#" class="font-medium text-freeGreen hover:text-freeGreenLight">
-                            Request Access Credentials
+                            Join another dNetwork
                         </a>
                     </div>
                 </div>
                 <div>
                     <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-freeGreen hover:bg-freeGreenLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-freeGreenLight">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                            <!-- Heroicon name: solid/lock-closed -->
-                            <svg class="h-5 w-5 text-white group-hover:text-lightgray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="True">
-                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                            <!-- Heroicon name: outline/status-online -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
                             </svg>
                         </span>
-                        Request Entry
+                        Create a dNetwork
                     </button>
                 </div>
             </form>
             <div>
                 <p class="mt-4 text-center text-1xl text-lg text-gray-400 font-light">
-                    Channel's QR CODE:
+                    App clone QR code:
                 </p>
                 <img id="QR.entryForm" class="mx-auto m-4 w-auto" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
             </div>
@@ -100,7 +100,6 @@
         </div>
         <script>
             window.onload = function() {
-                document.getElementById('body').style.backgroundColor = '#008230';
                 document.getElementById('loader').style.display = 'none';
             };
             
@@ -114,6 +113,7 @@
                 document.getElementById('entryForm').style.display = 'block';
                 document.getElementById('QR.entryForm').src += window.location.href;
             } else {
+                document.getElementById('body').style.backgroundColor = '#008230';
                 document.getElementById('PCBrowser').style.display = 'block';
                 document.getElementById('QR.PCBrowser').src += window.location.href;
             }
@@ -131,7 +131,6 @@
 
             if (isIos() && !isInStandaloneMode()) {
                 setTimeout(function(){document.getElementById('snackbar').classList.add('show');}, 500);
-                // setTimeout(function(){document.getElementById('snackbar').classList.remove('show');}, 3500);
             }
 
             function hide() {
