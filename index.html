@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
@@ -39,108 +39,64 @@
             </div>
         </div>
         <div id="entryForm" class="p-8" style="display: none;">
+            <div id="langBtn" class="w-[42px] h-[42px] -mt-4 -ml-4 mb-4 p-2 border border-[#008230] rounded-tr-[21px] rounded-br-[21px] rounded-bl-[21px]">
+                <a onclick="langSwitch()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 21 21" fill="currentColor">
+                        <path fill="#008230" fill-rule="evenodd" d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
             <div>
                 <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
-                <h2 class="mt-6 text-center text-1xl font-medium text-gray-900">
-                    Enter your access credentials
-                </h2>
+                <h2 id="topSectionInstructions" class="mt-6 text-center text-1xl font-medium text-gray-900"></h2>
             </div>
             <form class="bg-transparent mt-8 space-y-6" action="#" method="POST">
                 <input type="hidden" name="remember" value="True">
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
-                        <label for="channel-name" class="sr-only">Channel Name</label>
-                        <input id="channel-name" name="channel" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Channel Name">
+                        <!-- <label for="channel-name" class="sr-only">Channel Name</label> -->
+                        <input id="channel-name" name="channel" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="dChannel’s Name">
                     </div>
                     <div>
-                        <label for="nickname" class="sr-only">Nickname</label>
-                        <input id="nickname" name="nickname" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Nickname">
+                        <!-- <label for="nickname" class="sr-only">Nickname</label> -->
+                        <input id="nickname" name="nickname" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Your Nickname">
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-freeGreen focus:ring-freeGreenLight border-gray-300 rounded">
-                        <label for="remember_me" class="ml-2 block text-sm text-freeGreen">
-                            Keep me connected
-                        </label>
+                        <label id="KeepMeConnectedLabel"for="remember_me" class="ml-2 block text-sm text-freeGreen"></label>
                     </div>
                     <div class="text-sm">
-                        <a href="#" class="font-medium text-freeGreen hover:text-freeGreenLight">
-                            Join another dNetwork
-                        </a>
+                        <a id="joinAnother_dChnlLabel" href="#" class="font-medium text-freeGreen hover:text-freeGreenLight"></a>
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-freeGreen hover:bg-freeGreenLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-freeGreenLight">
-                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <button id="" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-freeGreen hover:bg-freeGreenLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-freeGreenLight">
+                        <span id="createA_dChnlIcon" class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <!-- Heroicon name: outline/status-online -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
                             </svg>
                         </span>
-                        Create a dNetwork
+                        <a id="createA_dChnlBtn"></a>
                     </button>
                 </div>
             </form>
             <div>
-                <p class="mt-4 text-center text-1xl text-lg text-gray-400 font-light">
-                    App clone QR code:
-                </p>
+                <p id="QR.instructions" class="mt-4 text-center text-1xl text-lg text-gray-400 font-light"></p>
                 <img id="QR.entryForm" class="mx-auto m-4 w-auto" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
             </div>
         </div>
         <div id="snackbar" class="text-left text-white rounded-lg p-8 z-1 fixed bottom-15">
-            <a onclick="hide()" class="absolute top-[5px] right-[5px]">
+            <a onclick="hide()" id="hideBtn" class="absolute top-[5px] right-[5px]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" fill="whitesmoke" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
                 </svg>
             </a>
-
-            Reminder: Using this progressive web app after adding it to home screen will ensure a much smoother user experience.
+            <p id="snackbarNote"></p>
         </div>
-        <script>
-            window.onload = function() {
-                document.getElementById('loader').style.display = 'none';
-            };
-            
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js');
-            }
-
-            // Checking if this is running on a PC
-
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                document.getElementById('entryForm').style.display = 'block';
-                document.getElementById('QR.entryForm').src += window.location.href;
-            } else {
-                document.getElementById('body').style.backgroundColor = '#008230';
-                document.getElementById('PCBrowser').style.display = 'block';
-                document.getElementById('QR.PCBrowser').src += window.location.href;
-            }
-
-            // Checking if this is running on iOS
-
-            const isIos = () => {
-                const userAgent = window.navigator.userAgent.toLowerCase();
-                return /ip(hone|od)/.test(userAgent);
-            }
-
-            // Checking if this is running in standalone mode
-
-            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-            if (isIos() && !isInStandaloneMode()) {
-                setTimeout(function(){document.getElementById('snackbar').classList.add('show');}, 500);
-            }
-
-            function hide() {
-                setTimeout(function(){document.getElementById('snackbar').classList.remove('show');}, 50);
-                // setTimeout(function(){document.getElementById('snackbar').classList.add('hide');}, 50);
-            }
-
-            // Checking if this is running on Android
-
-        </script>
-        <!-- <script src="view.control.js"></script> -->
+        <script src="/ctrl/view.control.js"></script>
+        <script src="/ctrl/lang.control.js"></script>
     </body>
 </html>
