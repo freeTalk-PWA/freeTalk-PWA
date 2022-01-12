@@ -1,0 +1,19 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name: npx
+    before: echo 'before script'
+    init: echo 'init script' # runs during prebuild
+    command: npx serve
+  - name: ngrok
+    before: echo 'before script'
+    init: echo 'init script'
+    command: cd .. && ./ngrok authtoken $(cat authToken.txt) && ./ngrok http 3000
+  - name: term
+    before: echo 'before script'
+    init: echo 'init script'
+    command: pwd && ls
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 3000
+    onOpen: open-browser

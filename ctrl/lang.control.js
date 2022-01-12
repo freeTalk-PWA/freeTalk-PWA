@@ -4,22 +4,22 @@
 var langList = {
     ar: `
         <a onclick="switchToArabic()">
-            <div id="white-008230" class="l rounded-md bg-[#008230] text-center text-white font-light">العربيّة</div>
+            <div id="white-008230" class="l rounded-md text-center text-white font-light">العربيّة</div>
         </a>
     `,
     en: `
         <a onclick="switchToEnglish()">
-            <div id="white-008230" class="l rounded-md bg-[#008230] text-center text-white font-light">English</div>
+            <div id="white-008230" class="l rounded-md text-center text-white font-light">English</div>
         </a>
     `,
     tr: `
         <a onclick="switchToTurkish()">
-            <div id="white-008230" class="l rounded-md bg-[#008230] text-center text-white font-light">Türkçe</div>
+            <div id="white-008230" class="l rounded-md text-center text-white font-light">Türkçe</div>
         </a>
     `,
     zh: `
         <a onclick="switchToChinese()">
-            <div id="white-008230" class="l rounded-md bg-[#008230] text-center text-white font-light">中文</div>
+            <div id="white-999999" class="l rounded-md text-center text-white font-light">中文</div>
         </a>
     `
 };
@@ -56,7 +56,6 @@ function langSwitch() {
     setTimeout(function() {
         document.getElementById('langBtn').classList.remove('w-[42px]');
         document.getElementById('langBtn').classList.add('langBtnClicked');
-        document.getElementById('langBtn').style.width = 'calc(100% + 2rem)';
     }, 50);
     setTimeout(function() {
         document.getElementById('langBtn').innerHTML = `${extendedLangBtnContent.replace('<lang>', LangList(window.sessionStorage.getItem('lang')))}`;
@@ -102,8 +101,8 @@ function changeDirToRTL() {
 
     extendedLangBtnContent = extendedLangBtnContent.replace('right-6', 'left-6');
 
-    document.getElementById('langBtn').classList.remove('rounded-tr-[21px]', '-ml-4');
-    document.getElementById('langBtn').classList.add('rounded-tl-[21px]', '-mr-4');
+    document.getElementById('langBtn').classList.remove('rounded-tr-[21px]', 'ml-4');
+    document.getElementById('langBtn').classList.add('rounded-tl-[21px]', 'mr-4');
     document.getElementById('KeepMeConnectedLabel').classList.remove('ml-2');
     document.getElementById('KeepMeConnectedLabel').classList.add('mr-2');
     document.getElementById('createA_dChnlIcon').classList.remove('left-0', 'pl-3');
@@ -120,17 +119,25 @@ function switchToArabic() {
     }, 50);
     setTimeout(function() {
         changeDirToRTL();
-        document.getElementById('topSectionInstructions').innerHTML = 'قم بانشاءِ قناتِكَ اللامركزيَّة';
-        document.getElementById('channel-name').placeholder = 'اسمُ قناتِكَ';
+        document.getElementById('topSectionInstructions').innerHTML = 'قم بانشاءِ تردُّدِكَ الخاص';
+        document.getElementById('channel-name').placeholder = 'اسمُ تردُّدِكَ';
         document.getElementById('nickname').placeholder = 'اسمكَ الحركي';
         document.getElementById('KeepMeConnectedLabel').innerHTML = 'أبقِنِ متَّصِلاً';
-        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'انضمَّ لقناةٍ لامركزيَّةٍ أخرى';
-        document.getElementById('createA_dChnlBtn').innerHTML = 'أنشئ قناتك اللامركزيَّة';
+        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'انضمَّ لتردُّدٍ آخر';
+        document.getElementById('createA_dChnlBtn').innerHTML = 'أنشئ تردُّدك الخاص';
         document.getElementById('QR.instructions').innerHTML = 'امسح لاستنساخِ هذا التطبيق:';
         document.getElementById('snackbarNote').innerHTML = 'تذكير: سيكونُ استخدام التطبيقِ عند ثبيتِه ، أي إضافتِهِ إلى الشاشةِ الرئيسيَّةِ أكثر سهولةً.';
+        // ---
+        document.getElementById('joinTopSectionInstructions').innerHTML = 'امسح ترميزَ QR للتردُّد الذي تودُّ الانضمام إليه';
+        document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'قم بانشاءِ تردُّدِكَ الخاص';
     }, 450);
 
     window.sessionStorage.setItem('lang', 'ar');
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.set('l', window.sessionStorage.getItem('lang'));
+    history.replaceState(null, null, '?' + urlParams.toString());
 }
 
 function changeDirToLTR() {
@@ -138,8 +145,8 @@ function changeDirToLTR() {
 
     extendedLangBtnContent = extendedLangBtnContent.replace('left-6', 'right-6');
 
-    document.getElementById('langBtn').classList.remove('rounded-tl-[21px]', '-mr-4');
-    document.getElementById('langBtn').classList.add('rounded-tr-[21px]', '-ml-4');
+    document.getElementById('langBtn').classList.remove('rounded-tl-[21px]', 'mr-4');
+    document.getElementById('langBtn').classList.add('rounded-tr-[21px]', 'ml-4');
     document.getElementById('KeepMeConnectedLabel').classList.remove('mr-2');
     document.getElementById('KeepMeConnectedLabel').classList.add('ml-2');
     document.getElementById('createA_dChnlIcon').classList.remove('right-0', 'pr-3');
@@ -158,17 +165,25 @@ function switchToEnglish() {
         document.documentElement.lang = 'en';
 
         changeDirToLTR();
-        document.getElementById('topSectionInstructions').innerHTML = 'Create your own dChannel';
-        document.getElementById('channel-name').placeholder = 'dChannel’s Name';
+        document.getElementById('topSectionInstructions').innerHTML = 'Create your own freequency';
+        document.getElementById('channel-name').placeholder = 'freequency’s Name';
         document.getElementById('nickname').placeholder = 'Your Nickname';
         document.getElementById('KeepMeConnectedLabel').innerHTML = 'Keep me connected';
-        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Join another dChannel';
-        document.getElementById('createA_dChnlBtn').innerHTML = 'Create a dChannel';
+        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Join another freequency';
+        document.getElementById('createA_dChnlBtn').innerHTML = 'Create a freequency';
         document.getElementById('QR.instructions').innerHTML = 'Scan to clone this app:';
         document.getElementById('snackbarNote').innerHTML = 'Reminder: Using this progressive web app after adding it to home screen will ensure a much smoother user experience.';
+        // ---
+        document.getElementById('joinTopSectionInstructions').innerHTML = 'Scan the QR of a freequency to join it';
+        document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Create your own freequency';
     }, 450);
 
     window.sessionStorage.setItem('lang', 'en');
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.set('l', window.sessionStorage.getItem('lang'));
+    history.replaceState(null, null, '?' + urlParams.toString());
 }
 
 function switchToTurkish() {
@@ -179,17 +194,25 @@ function switchToTurkish() {
         document.documentElement.lang = 'tr';
 
         changeDirToLTR();
-        document.getElementById('topSectionInstructions').innerHTML = 'Kendi moKanalınızı oluşturun';
-        document.getElementById('channel-name').placeholder = 'moKanalınız’ın İsmi';
+        document.getElementById('topSectionInstructions').innerHTML = 'Kendi freekansınızı oluşturun';
+        document.getElementById('channel-name').placeholder = 'freekansınız’ın İsmi';
         document.getElementById('nickname').placeholder = 'Takma Adınız';
         document.getElementById('KeepMeConnectedLabel').innerHTML = 'Beni bağlı tut';
-        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Başka bir moKanala katılın';
-        document.getElementById('createA_dChnlBtn').innerHTML = 'Bir moKanal oluşturun';
+        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Başka bir freekansa katılın';
+        document.getElementById('createA_dChnlBtn').innerHTML = 'Bir freekans oluşturun';
         document.getElementById('QR.instructions').innerHTML = 'Bu App’ı klonlamak için tarayın:';
         document.getElementById('snackbarNote').innerHTML = 'Hatırlatma: Bu aplikasyonu ana ekrana ekledikten sonra kullanmak, çok daha sorunsuz bir kullanıcı deneyimi sağlayacaktır.';
+        // ---
+        document.getElementById('joinTopSectionInstructions').innerHTML = 'Bir freekansa katılmak için QR’sini tarayın';
+        document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Kendi freekansınızı oluşturun';
     }, 450);
 
     window.sessionStorage.setItem('lang', 'tr');
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.set('l', window.sessionStorage.getItem('lang'));
+    history.replaceState(null, null, '?' + urlParams.toString());
 }
 
 function switchToChinese() {}

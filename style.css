@@ -32,7 +32,7 @@ body {
     left: calc(50vw - 150px);
 }
 
-#entryForm {
+#entryForm, #joinForm {
     position: relative;
     background-color: white;
     height: calc(100vh);
@@ -44,7 +44,7 @@ body {
 }
 
 #langBtn.langBtnClicked {
-    width: calc(100% + 2rem);
+    width: calc(100% - 2rem);
     transition: 400ms;
 }
 
@@ -60,6 +60,18 @@ body {
     transition: 400ms;
 }
 
+#white-999999 {
+    fill: white;
+    background-color: white;
+    transition: 400ms;
+}
+
+#white-999999.langBtnClicked {
+    fill: #999999;
+    background-color: #999999;
+    transition: 400ms;
+}
+
 #snackbar {
     position: fixed;
     bottom: 15px;
@@ -71,6 +83,11 @@ body {
     border-radius: 1rem;
     padding: 1.2rem;
     z-index: 1;
+}
+
+#QR_Canvas {
+    width: calc(100vw - 4rem);
+    height: calc(100vw - 4rem);
 }
 
 #snackbar.show {

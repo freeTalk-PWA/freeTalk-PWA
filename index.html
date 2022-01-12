@@ -28,6 +28,7 @@
     </head>
     <body id="body">
         <div id="loader"></div>
+        <!-- | -->
         <div id="PCBrowser" style="display: none;">
             <div class="bg-white p-8 rounded-lg w-[300px] h-[300px]">
                 <div class="">
@@ -38,14 +39,16 @@
                 </div>
             </div>
         </div>
+        <!-- | -->
+        <div id="langBtn" class="w-[42px] h-[42px] mt-4 ml-4 p-2 border border-[#008230] rounded-tr-[21px] rounded-br-[21px] rounded-bl-[21px]">
+            <a onclick="langSwitch()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 21 21" fill="currentColor">
+                    <path fill="#008230" fill-rule="evenodd" d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+        <!-- | -->
         <div id="entryForm" class="p-8" style="display: none;">
-            <div id="langBtn" class="w-[42px] h-[42px] -mt-4 -ml-4 mb-4 p-2 border border-[#008230] rounded-tr-[21px] rounded-br-[21px] rounded-bl-[21px]">
-                <a onclick="langSwitch()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 21 21" fill="currentColor">
-                        <path fill="#008230" fill-rule="evenodd" d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </div>
             <div>
                 <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
                 <h2 id="topSectionInstructions" class="mt-6 text-center text-1xl font-medium text-gray-900"></h2>
@@ -55,7 +58,7 @@
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
                         <!-- <label for="channel-name" class="sr-only">Channel Name</label> -->
-                        <input id="channel-name" name="channel" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="dChannel’s Name">
+                        <input id="channel-name" name="channel" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="freequency’s Name">
                     </div>
                     <div>
                         <!-- <label for="nickname" class="sr-only">Nickname</label> -->
@@ -68,7 +71,7 @@
                         <label id="KeepMeConnectedLabel"for="remember_me" class="ml-2 block text-sm text-freeGreen"></label>
                     </div>
                     <div class="text-sm">
-                        <a id="joinAnother_dChnlLabel" href="#" class="font-medium text-freeGreen hover:text-freeGreenLight"></a>
+                        <a onclick="switchToTheJoinForm()" id="joinAnother_dChnlLabel" href="#" class="font-medium text-freeGreen hover:text-freeGreenLight"></a>
                     </div>
                 </div>
                 <div>
@@ -88,6 +91,20 @@
                 <img id="QR.entryForm" class="mx-auto m-4 w-auto" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
             </div>
         </div>
+        <!-- | -->
+        <div id="joinForm" class="p-8" style="display: none;">
+            <div>
+                <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
+                <h2 id="joinTopSectionInstructions" class="mt-6 text-center text-1xl text-gray-400 font-light"></h2>
+            </div>
+            <form class="bg-transparent mt-8" action="#" method="POST">
+                <div id="QR_Canvas" class="mx-auto p-1 border border-[#008230] rounded-lg items-center overflow-hidden"></div> <!-- flex justify-center -->
+                <div class="text-sm text-center mt-8">
+                    <a onclick="switchBackToTheEntryForm()" id="createYourOwnFreequencyLabel" href="#" class="font-medium text-freeGreen hover:text-freeGreenLight"></a>
+                </div>
+            </form>
+        </div>
+        <!-- | -->
         <div id="snackbar" class="text-left text-white rounded-lg p-8 z-1 fixed bottom-15">
             <a onclick="hide()" id="hideBtn" class="absolute top-[5px] right-[5px]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -98,5 +115,6 @@
         </div>
         <script src="/ctrl/view.control.js"></script>
         <script src="/ctrl/lang.control.js"></script>
+        <script src="/ctrl/join.control.js"></script>
     </body>
 </html>
