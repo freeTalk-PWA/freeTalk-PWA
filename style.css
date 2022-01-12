@@ -38,6 +38,23 @@ body {
     height: calc(100vh);
 }
 
+/* #topSectionInstructions,
+#otherOptions,
+#createAFreequencyBtn,
+#qrScanBox,
+#joinTopSectionInstructions,
+#switchBackToTheEntryLink {} */
+
+#topSectionInstructions.unopaque,
+#otherOptions.unopaque,
+#createAFreequencyBtn.unopaque,
+#qrScanBox.unopaque,
+#joinTopSectionInstructions.unopaque,
+#switchBackToTheEntryLink.unopaque {
+    opacity: 0;
+    transition: 500ms;
+}
+
 #langBtn {
     width: 42px;
     transition: 400ms;
@@ -87,7 +104,7 @@ body {
 
 #QR_Canvas {
     width: calc(100vw - 4rem);
-    height: calc(100vw - 4rem);
+    height: 42px;
 }
 
 #snackbar.show {

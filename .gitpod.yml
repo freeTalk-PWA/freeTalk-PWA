@@ -8,10 +8,10 @@ tasks:
     before: echo 'before script'
     init: echo 'init script'
     command: cd .. && ./ngrok authtoken $(cat authToken.txt) && ./ngrok http 3000
-  - name: term
-    before: echo 'before script'
-    init: echo 'init script'
-    command: pwd && ls
+  # - name: term
+  #   before: echo 'before script'
+  #   init: echo 'init script'
+  #   command: pwd && ls
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:

@@ -129,6 +129,7 @@ function switchToArabic() {
         document.getElementById('snackbarNote').innerHTML = 'تذكير: سيكونُ استخدام التطبيقِ عند ثبيتِه ، أي إضافتِهِ إلى الشاشةِ الرئيسيَّةِ أكثر سهولةً.';
         // ---
         document.getElementById('joinTopSectionInstructions').innerHTML = 'امسح ترميزَ QR للتردُّد الذي تودُّ الانضمام إليه';
+        document.getElementById('join-nickname').placeholder = 'اسمكَ الحركي';
         document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'قم بانشاءِ تردُّدِكَ الخاص';
     }, 450);
 
@@ -175,6 +176,7 @@ function switchToEnglish() {
         document.getElementById('snackbarNote').innerHTML = 'Reminder: Using this progressive web app after adding it to home screen will ensure a much smoother user experience.';
         // ---
         document.getElementById('joinTopSectionInstructions').innerHTML = 'Scan the QR of a freequency to join it';
+        document.getElementById('join-nickname').placeholder = 'Your Nickname';
         document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Create your own freequency';
     }, 450);
 
@@ -204,6 +206,7 @@ function switchToTurkish() {
         document.getElementById('snackbarNote').innerHTML = 'Hatırlatma: Bu aplikasyonu ana ekrana ekledikten sonra kullanmak, çok daha sorunsuz bir kullanıcı deneyimi sağlayacaktır.';
         // ---
         document.getElementById('joinTopSectionInstructions').innerHTML = 'Bir freekansa katılmak için QR’sini tarayın';
+        document.getElementById('join-nickname').placeholder = 'Takma Adınız';
         document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Kendi freekansınızı oluşturun';
     }, 450);
 
