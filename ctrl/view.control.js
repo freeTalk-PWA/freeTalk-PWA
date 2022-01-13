@@ -112,14 +112,51 @@ function switchToTheJoinForm() {
             setTimeout(function() {
                 document.getElementById('joinTopSectionInstructions').style.opacity = x * 0.01;
                 document.getElementById('switchBackToTheEntryLink').style.opacity = x * 0.01;
+                document.getElementById('micBtn').style.opacity = x * 0.01;
             }, 5 * x);
         }
 
         document.getElementById('joinTopSectionInstructions').classList.remove('unopaque');
         document.getElementById('switchBackToTheEntryLink').classList.remove('unopaque');
+        document.getElementById('micBtn').classList.remove('unopaque');
     }, 420);
 
     setTimeout(function() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                const mediaRecorder = new MediaRecorder(stream);
+                const audioChunks = [];
+
+                window.sessionStorage.setItem('mediaRecorder', mediaRecorder);
+                window.sessionStorage.setItem('audioChunks', audioChunks);
+
+                mediaRecorder.addEventListener('dataavailable', event => {
+                    audioChunks.push(event.data);
+                });
+
+                document.getElementById('micBtn').addEventListener('touchstart', beginListening);
+                document.getElementById('micBtn').addEventListener('touchend', endListening);
+            }).catch(e => {
+                const errMsg = 'Mic access was denied...';
+
+                setTimeout(function() {
+                    document.getElementById('micIcon').style.display = 'none';
+                    document.getElementById('errMsg').classList.remove('hidden');
+
+                    for (let y = 0; y < errMsg.length; y++) {
+                        setTimeout(function() {
+                            document.getElementById('errMsg').innerHTML += errMsg[y];
+                        }, 21 * y);
+                    }
+                }, 501);
+
+                document.getElementById('micIcon').classList.add('unopaque');
+                document.getElementById('micBtn').classList.add('disabled');
+                // document.getElementById('micBtn').setAttribute('disabled');
+
+                console.log(e);
+            });
+
         for (let k = 0; k < joinNickname.length; k++) {
             setTimeout(function() {
                 document.getElementById('join-nickname').placeholder += joinNickname[k];
@@ -146,8 +183,10 @@ function switchBackToTheEntryForm() {
     setTimeout(function() {
         document.getElementById('joinTopSectionInstructions').style.opacity = null;
         document.getElementById('switchBackToTheEntryLink').style.opacity = null;
+        document.getElementById('micBtn').style.opacity = null;
         document.getElementById('joinTopSectionInstructions').classList.add('unopaque');
         document.getElementById('switchBackToTheEntryLink').classList.add('unopaque');
+        document.getElementById('micBtn').classList.add('unopaque');
     }, 75);
 
     setTimeout(function() {

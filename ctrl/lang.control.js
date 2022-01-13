@@ -166,18 +166,18 @@ function switchToEnglish() {
         document.documentElement.lang = 'en';
 
         changeDirToLTR();
-        document.getElementById('topSectionInstructions').innerHTML = 'Create your own freequency';
-        document.getElementById('channel-name').placeholder = 'freequency’s Name';
+        document.getElementById('topSectionInstructions').innerHTML = 'Create your own Freequency';
+        document.getElementById('channel-name').placeholder = 'Freequency’s Name';
         document.getElementById('nickname').placeholder = 'Your Nickname';
         document.getElementById('KeepMeConnectedLabel').innerHTML = 'Keep me connected';
-        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Join another freequency';
-        document.getElementById('createA_dChnlBtn').innerHTML = 'Create a freequency';
+        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Join another Freequency';
+        document.getElementById('createA_dChnlBtn').innerHTML = 'Create a Freequency';
         document.getElementById('QR.instructions').innerHTML = 'Scan to clone this app:';
         document.getElementById('snackbarNote').innerHTML = 'Reminder: Using this progressive web app after adding it to home screen will ensure a much smoother user experience.';
         // ---
-        document.getElementById('joinTopSectionInstructions').innerHTML = 'Scan the QR of a freequency to join it';
+        document.getElementById('joinTopSectionInstructions').innerHTML = 'Scan the QR of a Freequency to join it';
         document.getElementById('join-nickname').placeholder = 'Your Nickname';
-        document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Create your own freequency';
+        document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Create your own Freequency';
     }, 450);
 
     window.sessionStorage.setItem('lang', 'en');
@@ -196,18 +196,18 @@ function switchToTurkish() {
         document.documentElement.lang = 'tr';
 
         changeDirToLTR();
-        document.getElementById('topSectionInstructions').innerHTML = 'Kendi freekansınızı oluşturun';
-        document.getElementById('channel-name').placeholder = 'freekansınız’ın İsmi';
+        document.getElementById('topSectionInstructions').innerHTML = 'Kendi Freekansınızı oluşturun';
+        document.getElementById('channel-name').placeholder = 'Freekansınız’ın İsmi';
         document.getElementById('nickname').placeholder = 'Takma Adınız';
         document.getElementById('KeepMeConnectedLabel').innerHTML = 'Beni bağlı tut';
-        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Başka bir freekansa katılın';
-        document.getElementById('createA_dChnlBtn').innerHTML = 'Bir freekans oluşturun';
+        document.getElementById('joinAnother_dChnlLabel').innerHTML = 'Başka bir Freekansa katılın';
+        document.getElementById('createA_dChnlBtn').innerHTML = 'Bir Freekans oluşturun';
         document.getElementById('QR.instructions').innerHTML = 'Bu App’ı klonlamak için tarayın:';
         document.getElementById('snackbarNote').innerHTML = 'Hatırlatma: Bu aplikasyonu ana ekrana ekledikten sonra kullanmak, çok daha sorunsuz bir kullanıcı deneyimi sağlayacaktır.';
         // ---
-        document.getElementById('joinTopSectionInstructions').innerHTML = 'Bir freekansa katılmak için QR’sini tarayın';
+        document.getElementById('joinTopSectionInstructions').innerHTML = 'Bir Freekansa katılmak için QR’sini tarayın';
         document.getElementById('join-nickname').placeholder = 'Takma Adınız';
-        document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Kendi freekansınızı oluşturun';
+        document.getElementById('createYourOwnFreequencyLabel').innerHTML = 'Kendi Freekansınızı oluşturun';
     }, 450);
 
     window.sessionStorage.setItem('lang', 'tr');
