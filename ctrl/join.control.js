@@ -24,11 +24,11 @@ function beginListening() {
             mediaRecorder.addEventListener('stop', () => {
                 const audioBlob = new Blob(audioChunks);
                 const audioUrl = URL.createObjectURL(audioBlob);
-                const audio = new Audio(audioUrl);
+                // const audio = new Audio(audioUrl);
 
                 for (let track of stream.getTracks()) { track.stop(); }
 
-                audio.play();
+                // audio.play();
             });
 
             mediaRecorder.start();

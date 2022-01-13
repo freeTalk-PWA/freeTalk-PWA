@@ -124,9 +124,13 @@ function switchToTheJoinForm() {
     setTimeout(function() {
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
+                document.getElementById('micIcon').style.display = 'block';
+                document.getElementById('errMsg').innerHTML = '';
+
                 window.sessionStorage.setItem('stream', stream);
 
                 document.getElementById('micBtn').addEventListener('touchstart', beginListening);
+                document.getElementById('errMsg').classList.add('hidden');
 
                 for (let track of stream.getTracks()) { track.stop(); }
             }).catch(e => {
@@ -134,6 +138,8 @@ function switchToTheJoinForm() {
 
                 setTimeout(function() {
                     document.getElementById('micIcon').style.display = 'none';
+                    document.getElementById('errMsg').innerHTML = '';
+
                     document.getElementById('errMsg').classList.remove('hidden');
 
                     for (let y = 0; y < errMsg.length; y++) {
