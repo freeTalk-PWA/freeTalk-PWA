@@ -124,18 +124,11 @@ function switchToTheJoinForm() {
     setTimeout(function() {
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
-                const mediaRecorder = new MediaRecorder(stream);
-                const audioChunks = [];
-
-                window.sessionStorage.setItem('mediaRecorder', mediaRecorder);
-                window.sessionStorage.setItem('audioChunks', audioChunks);
-
-                mediaRecorder.addEventListener('dataavailable', event => {
-                    audioChunks.push(event.data);
-                });
+                window.sessionStorage.setItem('stream', stream);
 
                 document.getElementById('micBtn').addEventListener('touchstart', beginListening);
-                document.getElementById('micBtn').addEventListener('touchend', endListening);
+
+                for (let track of stream.getTracks()) { track.stop(); }
             }).catch(e => {
                 const errMsg = 'Mic access was denied...';
 
@@ -152,7 +145,6 @@ function switchToTheJoinForm() {
 
                 document.getElementById('micIcon').classList.add('unopaque');
                 document.getElementById('micBtn').classList.add('disabled');
-                // document.getElementById('micBtn').setAttribute('disabled');
 
                 console.log(e);
             });

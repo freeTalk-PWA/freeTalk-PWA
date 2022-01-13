@@ -1,16 +1,6 @@
 // Credits: Bryan Jennings
 
 function beginListening() {
-    // for (let i = 0; i < 10; i++) {
-    //     for (let j = 0 + (i * 200); j < 100 + (i * 200); j++) {
-    //         setTimeout(function() {
-    //             document.getElementById('micIcon').style.opacity = 1 - ((j - (i * 200)) * 0.01);
-    //         }, 2.5 * j);
-    //         setTimeout(function() {
-    //             document.getElementById('micIcon').style.opacity = ((j - (i * 200)) * 0.01);
-    //         }, 2.5 * (j + 100));
-    //     }
-    // }
     listeningInterval = setInterval(function() {
         for (let j = 0; j < 100; j++) {
             setTimeout(function() {
@@ -22,25 +12,31 @@ function beginListening() {
         }
     }, 990);
 
-    mediaRecorder = window.sessionStorage.getItem('mediaRecorder');
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+            const mediaRecorder = new MediaRecorder(stream);
+            const audioChunks = [];
 
-    mediaRecorder.addEventListener('stop', () => {
-        const audioBlob = new Blob(audioChunks);
-        const audioUrl = URL.createObjectURL(audioBlob);
-        const audio = new Audio(audioUrl);
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
 
-        window.sessionStorage.setItem('audio', audio);
-    });
+            mediaRecorder.addEventListener('stop', () => {
+                const audioBlob = new Blob(audioChunks);
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audio = new Audio(audioUrl);
 
-    mediaRecorder.start();
-}
+                for (let track of stream.getTracks()) { track.stop(); }
 
-function endListening() {
-    mediaRecorder = window.sessionStorage.getItem('mediaRecorder');
-    audio = window.sessionStorage.getItem('audio');
+                audio.play();
+            });
 
-    clearInterval(listeningInterval);
+            mediaRecorder.start();
 
-    mediaRecorder.stop();
-    audio.play();
+            document.getElementById('micBtn').addEventListener('touchend', function() {
+                clearInterval(listeningInterval);
+
+                mediaRecorder.stop();
+            });
+        });
 }
