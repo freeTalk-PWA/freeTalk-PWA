@@ -7,6 +7,7 @@ window.onload = function() {
 
     url = new URL(window.location.href);
 
+    window.sessionStorage.setItem('micAccess', 0);
     window.sessionStorage.setItem('lang', url.searchParams.get('l') ? url.searchParams.get('l') : null);
 
     setTimeout(function() {
@@ -122,38 +123,40 @@ function switchToTheJoinForm() {
     }, 420);
 
     setTimeout(function() {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(stream => {
-                document.getElementById('micIcon').style.display = 'block';
-                document.getElementById('errMsg').innerHTML = '';
-
-                window.sessionStorage.setItem('stream', stream);
-
-                document.getElementById('micBtn').addEventListener('touchstart', beginListening);
-                document.getElementById('errMsg').classList.add('hidden');
-
-                for (let track of stream.getTracks()) { track.stop(); }
-            }).catch(e => {
-                const errMsg = 'Mic access was denied...';
-
-                setTimeout(function() {
-                    document.getElementById('micIcon').style.display = 'none';
+        if (window.sessionStorage.getItem('micAccess') === '0') {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    document.getElementById('micIcon').style.display = 'block';
                     document.getElementById('errMsg').innerHTML = '';
 
-                    document.getElementById('errMsg').classList.remove('hidden');
+                    window.sessionStorage.setItem('micAccess', 1);
 
-                    for (let y = 0; y < errMsg.length; y++) {
-                        setTimeout(function() {
-                            document.getElementById('errMsg').innerHTML += errMsg[y];
-                        }, 21 * y);
-                    }
-                }, 501);
+                    document.getElementById('micBtn').addEventListener('touchstart', beginListening);
+                    document.getElementById('errMsg').classList.add('hidden');
 
-                document.getElementById('micIcon').classList.add('unopaque');
-                document.getElementById('micBtn').classList.add('disabled');
+                    for (let track of stream.getTracks()) { track.stop(); }
+                }).catch(e => {
+                    const errMsg = 'Mic access was denied...';
 
-                console.log(e);
-            });
+                    setTimeout(function() {
+                        document.getElementById('micIcon').style.display = 'none';
+                        document.getElementById('errMsg').innerHTML = '';
+
+                        document.getElementById('errMsg').classList.remove('hidden');
+
+                        for (let y = 0; y < errMsg.length; y++) {
+                            setTimeout(function() {
+                                document.getElementById('errMsg').innerHTML += errMsg[y];
+                            }, 21 * y);
+                        }
+                    }, 501);
+
+                    document.getElementById('micIcon').classList.add('unopaque');
+                    document.getElementById('micBtn').classList.add('disabled');
+
+                    console.log(e);
+                });
+        }
 
         for (let k = 0; k < joinNickname.length; k++) {
             setTimeout(function() {
