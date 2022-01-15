@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
-window.onload = function() {
+window.onload = function () {
     document.getElementById('loader').style.display = 'none';
 
     url = new URL(window.location.href);
@@ -10,7 +10,7 @@ window.onload = function() {
     window.sessionStorage.setItem('micAccess', 0);
     window.sessionStorage.setItem('lang', url.searchParams.get('l') ? url.searchParams.get('l') : null);
 
-    setTimeout(function() {
+    setTimeout(function () {
         if (window.sessionStorage.getItem('lang')) {
             if (window.sessionStorage.getItem('lang') === 'ar') {
                 switchToArabic();
@@ -61,11 +61,11 @@ const isIos = () => {
 const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
 if (isIos() && !isInStandaloneMode()) {
-    setTimeout(function(){document.getElementById('snackbar').classList.add('show');}, 500);
+    setTimeout(function () { document.getElementById('snackbar').classList.add('show'); }, 500);
 }
 
 function hide() {
-    setTimeout(function(){document.getElementById('snackbar').classList.remove('show');}, 50);
+    setTimeout(function () { document.getElementById('snackbar').classList.remove('show'); }, 50);
     // setTimeout(function(){document.getElementById('snackbar').classList.add('hide');}, 50);
 }
 
@@ -75,13 +75,15 @@ function hide() {
 
 function switchToTheJoinForm() {
     var joinNickname = document.getElementById('join-nickname').placeholder || window.sessionStorage.getItem('join-nickname');
+    var entryKey = document.getElementById('entryKey').placeholder || window.sessionStorage.getItem('entryKey');
 
     document.getElementById('join-nickname').placeholder = '';
+    document.getElementById('entryKey').placeholder = '';
 
     window.sessionStorage.setItem('channel-name', document.getElementById('channel-name').placeholder);
 
     for (let i = document.getElementById('channel-name').placeholder.length; i > 0; i--) {
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('channel-name').placeholder = document.getElementById('channel-name').placeholder.substring(0, document.getElementById('channel-name').placeholder.length - 1);
         }, Math.floor(Math.random() * (200 - 40) + 40));
     }
@@ -89,12 +91,12 @@ function switchToTheJoinForm() {
     window.sessionStorage.setItem('nickname', document.getElementById('nickname').placeholder);
 
     for (let j = document.getElementById('nickname').placeholder.length; j > 0; j--) {
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('nickname').placeholder = document.getElementById('nickname').placeholder.substring(0, document.getElementById('nickname').placeholder.length - 1);
         }, Math.floor(Math.random() * (200 - 40) + 40));
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById('topSectionInstructions').style.opacity = null;
         document.getElementById('otherOptions').style.opacity = null;
         document.getElementById('createAFreequencyBtn').style.opacity = null;
@@ -105,24 +107,26 @@ function switchToTheJoinForm() {
         document.getElementById('qrScanBox').classList.add('unopaque');
     }, 75);
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById('entryForm').style.display = 'none';
         document.getElementById('joinForm').style.display = 'block';
 
         for (let x = 0; x < 100; x++) {
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('joinTopSectionInstructions').style.opacity = x * 0.01;
                 document.getElementById('switchBackToTheEntryLink').style.opacity = x * 0.01;
+                document.getElementById('entryKey').style.opacity = x * 0.01;
                 document.getElementById('micBtn').style.opacity = x * 0.01;
             }, 5 * x);
         }
 
         document.getElementById('joinTopSectionInstructions').classList.remove('unopaque');
         document.getElementById('switchBackToTheEntryLink').classList.remove('unopaque');
+        document.getElementById('entryKey').classList.remove('unopaque');
         document.getElementById('micBtn').classList.remove('unopaque');
     }, 420);
 
-    setTimeout(function() {
+    setTimeout(function () {
         if (window.sessionStorage.getItem('micAccess') === '0') {
             navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(stream => {
@@ -138,14 +142,14 @@ function switchToTheJoinForm() {
                 }).catch(e => {
                     const errMsg = 'Mic access was denied...';
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         document.getElementById('micIcon').style.display = 'none';
                         document.getElementById('errMsg').innerHTML = '';
 
                         document.getElementById('errMsg').classList.remove('hidden');
 
                         for (let y = 0; y < errMsg.length; y++) {
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 document.getElementById('errMsg').innerHTML += errMsg[y];
                             }, 21 * y);
                         }
@@ -159,9 +163,14 @@ function switchToTheJoinForm() {
         }
 
         for (let k = 0; k < joinNickname.length; k++) {
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('join-nickname').placeholder += joinNickname[k];
             }, 21 * k);
+        }
+        for (let l = 0; l < entryKey.length; l++) {
+            setTimeout(function () {
+                document.getElementById('entryKey').placeholder += entryKey[l];
+            }, 21 * l);
         }
     }, 480);
 }
@@ -176,26 +185,36 @@ function switchBackToTheEntryForm() {
     window.sessionStorage.setItem('join-nickname', document.getElementById('join-nickname').placeholder);
 
     for (let i = document.getElementById('join-nickname').placeholder.length; i > 0; i--) {
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('join-nickname').placeholder = document.getElementById('join-nickname').placeholder.substring(0, document.getElementById('join-nickname').placeholder.length - 1);
         }, Math.floor(Math.random() * (200 - 40) + 40));
     }
 
-    setTimeout(function() {
+    window.sessionStorage.setItem('entryKey', document.getElementById('entryKey').placeholder);
+
+    for (let j = document.getElementById('entryKey').placeholder.length; j > 0; j--) {
+        setTimeout(function () {
+            document.getElementById('entryKey').placeholder = document.getElementById('entryKey').placeholder.substring(0, document.getElementById('entryKey').placeholder.length - 1);
+        }, Math.floor(Math.random() * (200 - 40) + 40));
+    }
+
+    setTimeout(function () {
         document.getElementById('joinTopSectionInstructions').style.opacity = null;
         document.getElementById('switchBackToTheEntryLink').style.opacity = null;
+        document.getElementById('entryKey').style.opacity = null;
         document.getElementById('micBtn').style.opacity = null;
         document.getElementById('joinTopSectionInstructions').classList.add('unopaque');
         document.getElementById('switchBackToTheEntryLink').classList.add('unopaque');
+        document.getElementById('entryKey').classList.add('entryKey');
         document.getElementById('micBtn').classList.add('unopaque');
     }, 75);
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById('entryForm').style.display = 'block';
         document.getElementById('joinForm').style.display = 'none';
 
         for (let x = 0; x < 100; x++) {
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('topSectionInstructions').style.opacity = x * 0.01;
                 document.getElementById('otherOptions').style.opacity = x * 0.01;
                 document.getElementById('createAFreequencyBtn').style.opacity = x * 0.01;
@@ -209,14 +228,14 @@ function switchBackToTheEntryForm() {
         document.getElementById('qrScanBox').classList.remove('unopaque');
     }, 420);
 
-    setTimeout(function() {
+    setTimeout(function () {
         for (let j = 0; j < channelNickname.length; j++) {
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('channel-name').placeholder += channelNickname[j];
             }, 21 * j);
         }
         for (let k = 0; k < nickname.length; k++) {
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('nickname').placeholder += nickname[k];
             }, 21 * k);
         }

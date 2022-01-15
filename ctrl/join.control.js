@@ -1,12 +1,12 @@
 // Credits: Bryan Jennings
 
 function beginListening() {
-    listeningInterval = setInterval(function() {
+    listeningInterval = setInterval(function () {
         for (let j = 0; j < 100; j++) {
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('micIcon').style.opacity = 1 - (j * 0.01);
             }, 5 * j);
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('micIcon').style.opacity = (j * 0.01);
             }, 5 * (j + 100));
         }
@@ -33,7 +33,7 @@ function beginListening() {
 
             mediaRecorder.start();
 
-            document.getElementById('micBtn').addEventListener('touchend', function() {
+            document.getElementById('micBtn').addEventListener('touchend', function () {
                 clearInterval(listeningInterval);
 
                 mediaRecorder.stop();

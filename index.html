@@ -1,138 +1,169 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-        <title>freeTalk.PS</title>
-        <link rel="apple-touch-icon" href="touch-icon-iphone.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="./icons/freeTalk.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="./icons/freeTalk.png">
-        <link rel="apple-touch-icon" sizes="167x167" href="./icons/freeTalk.png">
-        <link rel="shortcut icon" href="./icons/favicon.ico" type="image/x-icon">
-        <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-        <link rel="stylesheet" href="./style.css">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <title>freeTalk.PS</title>
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./icons/freeTalk.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/freeTalk.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="./icons/freeTalk.png">
+    <link rel="shortcut icon" href="./icons/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
                         freeGreen: '#008230',
                         freeGreenLight: '#008230D9',
-                        }
                     }
                 }
             }
-        </script>
-    </head>
-    <body id="body">
-        <div id="loader"></div>
-        <!-- | -->
-        <div id="PCBrowser" style="display: none;">
-            <div class="bg-white p-8 rounded-lg w-[300px] h-[300px]">
-                <div class="">
-                    <p class="mt-0 text-center text-xs text-gray-400 font-light leading-4">
-                        This link can only be accessed using a mobile device to scan the QR code:
-                    </p>
-                    <img id="QR.PCBrowser" class="mx-auto m-4 w-auto" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
-                </div>
-            </div>
-        </div>
-        <!-- | -->
-        <div id="langBtn" class="w-[42px] h-[42px] mt-4 ml-4 p-2 border border-[#008230] rounded-tr-[21px] rounded-br-[21px] rounded-bl-[21px]">
-            <a onclick="langSwitch()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 21 21" fill="currentColor">
-                    <path fill="#008230" fill-rule="evenodd" d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z" clip-rule="evenodd" />
-                </svg>
-            </a>
-        </div>
-        <!-- | -->
-        <div id="entryForm" class="p-8 pt-4" style="display: none;">
-            <div>
-                <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
-                <h2 id="topSectionInstructions" class="mt-6 text-center text-1xl font-medium text-gray-900">
-                    Create your own Freequency
-                </h2>
-            </div>
-            <form class="bg-transparent mt-8 space-y-6" action="#" method="POST">
-                <input type="hidden" name="remember" value="True">
-                <div class="rounded-md shadow-sm -space-y-px">
-                    <div>
-                        <input id="channel-name" name="channel" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Freequency’s Name">
-                    </div>
-                    <div>
-                        <input id="nickname" name="nickname" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Your Nickname">
-                    </div>
-                </div>
-                <div id="otherOptions" class="flex items-center justify-between">
-                    <div id="KeepMeConnectedCheckbox" class="flex items-center">
-                        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-freeGreen focus:ring-freeGreenLight border-gray-300 rounded">
-                        <label id="KeepMeConnectedLabel"for="remember_me" class="ml-2 block text-sm text-freeGreen">
-                            Keep me connected
-                        </label>
-                    </div>
-                    <div id="switchToTheJoinLink" class="text-sm">
-                        <a onclick="switchToTheJoinForm()" id="joinAnother_dChnlLabel" href="#" class="font-medium text-freeGreen hover:text-freeGreenLight">
-                            Join another Freequency
-                        </a>
-                    </div>
-                </div>
-                <div id="createAFreequencyBtn" class="">
-                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-freeGreen hover:bg-freeGreenLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-freeGreenLight">
-                        <span id="createA_dChnlIcon" class="absolute left-0 inset-y-0 flex items-center pl-3">
-                            <!-- Heroicon name: outline/status-online -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
-                            </svg>
-                        </span>
-                        <a id="createA_dChnlBtn">Create a Freequency</a>
-                    </button>
-                </div>
-            </form>
-            <div id="qrScanBox" class="">
-                <p id="QR.instructions" class="mt-4 text-center text-1xl text-lg text-gray-400 font-light">
-                    Scan to clone this app:
+        }
+    </script>
+</head>
+
+<body id="body">
+    <div id="loader"></div>
+    <!-- | -->
+    <div id="PCBrowser" style="display: none;">
+        <div class="bg-white p-8 rounded-lg w-[300px] h-[300px]">
+            <div class="">
+                <p class="mt-0 text-center text-xs text-gray-400 font-light leading-4">
+                    This link can only be accessed using a mobile device to scan the QR code:
                 </p>
-                <img id="QR.entryForm" class="mx-auto m-4 w-auto" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
+                <img id="QR.PCBrowser" class="mx-auto m-4 w-auto"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
             </div>
         </div>
-        <!-- | -->
-        <div id="joinForm" class="p-8 pt-4" style="display: none;">
-            <div>
-                <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
-                <h2 id="joinTopSectionInstructions" class="mt-6 text-center text-1xl text-gray-400 font-light un"></h2>
-            </div>
-            <form class="bg-transparent mt-8" action="#" method="POST">
-                <div class="rounded-md shadow-sm -space-y-px">
-                    <div>
-                        <input id="join-nickname" name="channel" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm" placeholder="Your Nickname">
-                    </div>
+    </div>
+    <!-- | -->
+    <div id="langBtn"
+        class="w-[42px] h-[42px] mt-4 ml-4 p-2 border border-[#008230] rounded-tr-[21px] rounded-br-[21px] rounded-bl-[21px] z-10">
+        <a onclick="langSwitch()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 21 21" fill="currentColor">
+                <path fill="#008230" fill-rule="evenodd"
+                    d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z"
+                    clip-rule="evenodd" />
+            </svg>
+        </a>
+    </div>
+    <!-- | -->
+    <div id="entryForm" class="p-8 pt-4" style="display: none;">
+        <div>
+            <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
+            <h2 id="topSectionInstructions" class="mt-6 text-center text-1xl font-medium text-gray-900">
+                Create Your Own Freequency
+            </h2>
+        </div>
+        <form class="bg-transparent mt-8 space-y-6" action="#" method="POST">
+            <input type="hidden" name="remember" value="True">
+            <div class="rounded-md shadow-sm -space-y-px">
+                <div>
+                    <input id="channel-name" name="channel" type="text" required
+                        class="appearance-none rounded-none relative block w-full px-2 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm"
+                        placeholder="Freequency’s Name">
                 </div>
-                <div id="QR_Canvas" class="mx-auto -mt-[1px] p-[6.3px] border border-gray-300 rounded-b-lg items-center overflow-hidden">
-                    <button id="micBtn" class="bg-[#00823045] w-full h-full rounded-sm flex justify-center"> <!-- onmousedown="beginListening()" onmouseup="endListening()" -->
-                        <svg id="micIcon" class="h-5 w-5 my-[4.2px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill="#008230" fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd" />
+                <div>
+                    <input id="nickname" name="nickname" type="text" required
+                        class="appearance-none rounded-none relative block w-full px-2 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm"
+                        placeholder="Your Nickname">
+                </div>
+            </div>
+            <div id="otherOptions" class="flex items-center justify-between">
+                <div id="KeepMeConnectedCheckbox" class="flex items-center">
+                    <input id="remember_me" name="remember_me" type="checkbox"
+                        class="h-4 w-4 text-freeGreen focus:ring-freeGreenLight border-gray-300 rounded">
+                    <label id="KeepMeConnectedLabel" for="remember_me" class="ml-2 block text-sm text-freeGreen">
+                        Keep me connected
+                    </label>
+                </div>
+                <div id="switchToTheJoinLink" class="text-sm">
+                    <a onclick="switchToTheJoinForm()" id="joinAnother_dChnlLabel" href="#"
+                        class="font-medium text-freeGreen hover:text-freeGreenLight">
+                        Join Another Freequency
+                    </a>
+                </div>
+            </div>
+            <div id="createAFreequencyBtn" class="">
+                <button type="submit"
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-freeGreen hover:bg-freeGreenLight focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-freeGreenLight">
+                    <span id="createA_dChnlIcon" class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <!-- Heroicon name: outline/status-online -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
                         </svg>
-                        <p id="errMsg" class="w-full mx-2 text-left text-red-500 font-light hidden"></p>
-                    </button>
-                </div>
-                <div id="switchBackToTheEntryLink" class="text-sm text-center mt-[24px] un">
-                    <a onclick="switchBackToTheEntryForm()" id="createYourOwnFreequencyLabel" href="#" class="font-medium text-freeGreen hover:text-freeGreenLight"></a>
-                </div>
-            </form>
+                    </span>
+                    <a id="createA_dChnlBtn">Create a Freequency</a>
+                </button>
+            </div>
+        </form>
+        <div id="qrScanBox" class="">
+            <p id="QR.instructions" class="mt-4 text-center text-1xl text-lg text-gray-400 font-light">
+                Scan to clone this app:
+            </p>
+            <img id="QR.entryForm" class="mx-auto m-4 w-auto"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=008230&data=" alt="QR">
         </div>
-        <!-- | -->
-        <div id="snackbar" class="text-left text-white rounded-lg p-8 z-1 fixed bottom-15">
-            <a onclick="hide()" id="hideBtn" class="absolute top-[5px] right-[5px]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" fill="whitesmoke" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                </svg>
-            </a>
-            <p id="snackbarNote">Reminder: Using this progressive web app after adding it to home screen will ensure a much smoother user experience.</p>
+    </div>
+    <!-- | -->
+    <div id="joinForm" class="p-8 pt-4" style="display: none;">
+        <div>
+            <img class="mx-auto h-12 w-auto" src="./icons/freeTalk.png" alt="freeTalk.PS">
+            <h2 id="joinTopSectionInstructions" class="mt-6 text-center text-1xl text-gray-400 font-light un"></h2>
         </div>
-        <script src="/ctrl/view.control.js"></script>
-        <script src="/ctrl/lang.control.js"></script>
-        <script src="/ctrl/join.control.js"></script>
-    </body>
+        <form class="bg-transparent mt-8" action="#" method="POST">
+            <div class="-space-y-px">
+                <div class="mx-auto border border-gray-300 rounded-t-md shadow-sm">
+                    <input id="join-nickname" name="channel" type="text" required
+                        class="appearance-none rounded-none relative block w-full px-2 py-2 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm"
+                        placeholder="Your Nickname">
+                </div>
+            </div>
+            <div id="QR_Canvas"
+                class="mx-auto -mt-[1px] p-[6.3px] border border-gray-300 rounded-b-md shadow-sm items-stretch overflow-hidden inline-flex">
+                <input id="entryKey" name="channel" type="text" required
+                    class="appearance-none rounded-none p-1 relative placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-freeGreenLight focus:border-freeGreenLight focus:z-10 sm:text-sm"
+                    placeholder="freeKey">
+                <button id="micBtn" class="bg-[#00823045] h-full w-[28.4px] rounded-sm flex justify-center">
+                    <!-- onmousedown="beginListening()" onmouseup="endListening()" -->
+                    <svg id="micIcon" class="h-5 w-5 my-[4.2px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path fill="#008230" fill-rule="evenodd"
+                            d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <p id="errMsg" class="w-full mx-2 text-left text-red-500 font-light hidden"></p>
+                </button>
+            </div>
+            <div id="switchBackToTheEntryLink" class="text-sm text-center mt-[24px] un">
+                <a onclick="switchBackToTheEntryForm()" id="createYourOwnFreequencyLabel" href="#"
+                    class="font-medium text-freeGreen hover:text-freeGreenLight"></a>
+            </div>
+        </form>
+    </div>
+    <!-- | -->
+    <div id="snackbar" class="text-left text-white rounded-lg p-8 z-1 fixed bottom-15">
+        <a onclick="hide()" id="hideBtn" class="absolute top-[5px] right-[5px]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" fill="whitesmoke"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd" />
+            </svg>
+        </a>
+        <p id="snackbarNote">Reminder: Using this progressive web app after adding it to home screen will ensure a much
+            smoother user experience.</p>
+    </div>
+    <script src="/ctrl/view.control.js"></script>
+    <script src="/ctrl/lang.control.js"></script>
+    <script src="/ctrl/join.control.js"></script>
+</body>
+
 </html>
