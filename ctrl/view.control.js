@@ -7,7 +7,7 @@ window.onload = function () {
 
     url = new URL(window.location.href);
 
-    window.sessionStorage.setItem('micAccess', 0);
+    // window.sessionStorage.setItem('micAccess', 0);
     window.sessionStorage.setItem('lang', url.searchParams.get('l') ? url.searchParams.get('l') : null);
 
     setTimeout(function () {
@@ -127,40 +127,40 @@ function switchToTheJoinForm() {
     }, 420);
 
     setTimeout(function () {
-        if (window.sessionStorage.getItem('micAccess') === '0') {
-            navigator.mediaDevices.getUserMedia({ audio: true })
-                .then(stream => {
-                    document.getElementById('micIcon').style.display = 'block';
-                    document.getElementById('errMsg').innerHTML = '';
+        // if (window.sessionStorage.getItem('micAccess') === '0') {
+        //     navigator.mediaDevices.getUserMedia({ audio: true })
+        //         .then(stream => {
+        //             document.getElementById('micIcon').style.display = 'block';
+        //             document.getElementById('errMsg').innerHTML = '';
 
-                    window.sessionStorage.setItem('micAccess', 1);
+        //             window.sessionStorage.setItem('micAccess', 1);
 
-                    document.getElementById('micBtn').addEventListener('touchstart', beginListening);
-                    document.getElementById('errMsg').classList.add('hidden');
+        //             document.getElementById('micBtn').addEventListener('touchstart', beginListening);
+        //             document.getElementById('errMsg').classList.add('hidden');
 
-                    for (let track of stream.getTracks()) { track.stop(); }
-                }).catch(e => {
-                    const errMsg = 'Mic access was denied...';
+        //             for (let track of stream.getTracks()) { track.stop(); }
+        //         }).catch(e => {
+        //             const errMsg = 'Mic access was denied...';
 
-                    setTimeout(function () {
-                        document.getElementById('micIcon').style.display = 'none';
-                        document.getElementById('errMsg').innerHTML = '';
+        //             setTimeout(function () {
+        //                 document.getElementById('micIcon').style.display = 'none';
+        //                 document.getElementById('errMsg').innerHTML = '';
 
-                        document.getElementById('errMsg').classList.remove('hidden');
+        //                 document.getElementById('errMsg').classList.remove('hidden');
 
-                        for (let y = 0; y < errMsg.length; y++) {
-                            setTimeout(function () {
-                                document.getElementById('errMsg').innerHTML += errMsg[y];
-                            }, 21 * y);
-                        }
-                    }, 501);
+        //                 for (let y = 0; y < errMsg.length; y++) {
+        //                     setTimeout(function () {
+        //                         document.getElementById('errMsg').innerHTML += errMsg[y];
+        //                     }, 21 * y);
+        //                 }
+        //             }, 501);
 
-                    document.getElementById('micIcon').classList.add('unopaque');
-                    document.getElementById('micBtn').classList.add('disabled');
+        //             document.getElementById('micIcon').classList.add('unopaque');
+        //             document.getElementById('micBtn').classList.add('disabled');
 
-                    console.log(e);
-                });
-        }
+        //             console.log(e);
+        //         });
+        // }
 
         for (let k = 0; k < joinNickname.length; k++) {
             setTimeout(function () {
@@ -205,7 +205,7 @@ function switchBackToTheEntryForm() {
         document.getElementById('micBtn').style.opacity = null;
         document.getElementById('joinTopSectionInstructions').classList.add('unopaque');
         document.getElementById('switchBackToTheEntryLink').classList.add('unopaque');
-        document.getElementById('entryKey').classList.add('entryKey');
+        document.getElementById('entryKey').classList.add('unopaque');
         document.getElementById('micBtn').classList.add('unopaque');
     }, 75);
 

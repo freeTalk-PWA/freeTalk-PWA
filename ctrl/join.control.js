@@ -12,6 +12,41 @@ function beginListening() {
         }
     }, 990);
 
+    // if (window.sessionStorage.getItem('micAccess') === '0') {
+    //     navigator.mediaDevices.getUserMedia({ audio: true })
+    //         .then(stream => {
+    //             document.getElementById('micIcon').style.display = 'block';
+    //             document.getElementById('errMsg').innerHTML = '';
+
+    //             window.sessionStorage.setItem('micAccess', 1);
+
+    //             document.getElementById('micBtn').addEventListener('touchstart', beginListening);
+    //             document.getElementById('errMsg').classList.add('hidden');
+
+    //             for (let track of stream.getTracks()) { track.stop(); }
+    //         }).catch(e => {
+    //             const errMsg = 'Mic access was denied...';
+
+    //             setTimeout(function () {
+    //                 document.getElementById('micIcon').style.display = 'none';
+    //                 document.getElementById('errMsg').innerHTML = '';
+
+    //                 document.getElementById('errMsg').classList.remove('hidden');
+
+    //                 for (let y = 0; y < errMsg.length; y++) {
+    //                     setTimeout(function () {
+    //                         document.getElementById('errMsg').innerHTML += errMsg[y];
+    //                     }, 21 * y);
+    //                 }
+    //             }, 501);
+
+    //             document.getElementById('micIcon').classList.add('unopaque');
+    //             document.getElementById('micBtn').classList.add('disabled');
+
+    //             console.log(e);
+    //         });
+    // }
+
     navigator.mediaDevices.getUserMedia({ audio: true })
         .then(stream => {
             const mediaRecorder = new MediaRecorder(stream);
