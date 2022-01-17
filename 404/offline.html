@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <title>You’re Offline...</title>
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./icons/freeTalk.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/freeTalk.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="./icons/freeTalk.png">
+    <link rel="shortcut icon" href="../icons/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="../en.manifest.json" crossorigin="use-credentials">
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #loader {
+            position: absolute;
+            top: calc(50vh - 75px);
+            left: calc(50vw - 75px);
+            border: 15px solid #242424;
+            border-top: 15px solid #008230F9;
+            border-right: 15px solid #008230D9;
+            border-bottom: 15px solid #008230B9;
+            border-left: 15px solid #00823099;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 4.2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div id="loader"></div>
+</body>
+
+</html>

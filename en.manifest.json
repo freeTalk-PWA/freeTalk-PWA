@@ -5,7 +5,7 @@
   "display": "fullscreen",
   "background_color": "#242424",
   "theme_color": "#008230",
-  "start_url": "/?home=true",
+  "start_url": "/?l=en",
   "orientation": "portrait",
   "lang": "en-US",
   "dir": "ltr",
